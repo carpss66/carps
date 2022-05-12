@@ -1,0 +1,29 @@
+server:
+  port: 7007
+tomcat:
+    max-http-post-size: 8192
+
+spring:
+  application:
+    name: api-gateway
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://server1:7000/eureka/
+    instance:
+      hostname: localhost
+
+zuul:
+  routes:
+    e-p:
+      path: /e-p/**
+      serviceId: eureka-provider1
+    e-c:
+      path: /e-c/**
+      serviceId: eureka-comsumer1
+yxwfilter:
+  ip:
+    whitelist: 127.0.0.1,192.168.43.222,192.168.3.52,192.168.3.131
+    whitelistenabled: true
